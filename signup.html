@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skin Serenity</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+body {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+.bgimg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(images/photo1.jpg);
+  min-height: 100%; 
+}
+.skin-serenity {
+  font-size: xx-large;
+  font-style: italic;
+}
+.container {
+  margin-top: 80px; 
+}
+.loading-spinner {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+</head>
+<body>
+<nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+    <div class="bgimg"></div>
+</nav>
+
+<div class="w3-main w3-padding-large" style="margin-left:40%">    
+    <img src="images/photo1.jpg" class="w3-hide-large w3-hide-small w3-round" style="display:block;width:60%;margin:auto;">
+    <img src="images/photo1.jpg" class="w3-hide-large w3-hide-medium w3-round" width="1000" height="1333">
+
+    <div class="container">
+        <h1 class="text-center skin-serenity">Create an account</h1><br>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" class="form-control" id="confirm_password">
+            </div>
+            <button type="button" class="btn btn-primary btn-block" id="signupButton">Sign Up</button>
+            <div class="loading-spinner" id="loadingSpinner">
+              <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Loading...
+            </div>
+        </form>
+        <p id="successMessage" class="text-center mt-3" style="display: none; color: green;">Successfully registered! You will be redirected to <a id="loginLink" href="#">login</a>.</p>
+        <p class="text-center mt-3">Already have an account? <a href="login.html">Click here</a>.</p>
+    </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"; // Import createUserWithEmailAndPassword function
+
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyB7MU7VC-oudrL07lnkMgZNvPc_J9zvHKo",
+        authDomain: "skinserenitydb-9729b.firebaseapp.com",
+        projectId: "skinserenitydb-9729b",
+        storageBucket: "skinserenitydb-9729b.appspot.com",
+        messagingSenderId: "527946304001",
+        appId: "1:527946304001:web:d5d29e7fbe56d5e2acce00",
+        measurementId: "G-61MKWW74GT"
+}
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app); // Initialize Firebase Auth
+
+    const signupForm = document.getElementById('signupForm');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const successMessage = document.getElementById('successMessage');
+    const signupButton = document.getElementById('signupButton');
+
+    signupButton.addEventListener('click', function() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Show loading spinner
+        loadingSpinner.style.display = 'block';
+
+        // Sign up with email and password
+        createUserWithEmailAndPassword(auth, email, password) // Use createUserWithEmailAndPassword function
+        .then((userCredential) => {
+            // Hide loading spinner
+            loadingSpinner.style.display = 'none';
+            // Show success message
+            successMessage.style.display = 'block';
+            // Clear form inputs
+            document.getElementById('username').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('confirm_password').value = '';
+            // Redirect to login page after a delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000); // Redirect after 3 seconds (adjust as needed)
+        })
+        .catch((error) => {
+            // Hide loading spinner
+            loadingSpinner.style.display = 'none';
+            // Show error message
+            alert(error.message);
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

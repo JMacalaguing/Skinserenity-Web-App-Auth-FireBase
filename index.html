@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skin Serenity</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<style>
+body {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+.bgimg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(images/photo1.jpg);
+  min-height: 100%; 
+}
+.skin-serenity {
+  font-size: xx-large;
+  font-style: italic;
+}
+.container {
+  margin-top: 150px; 
+}
+</style>
+</head>
+<body>
+<nav class="w3-sidebar w3-hide-medium w3-hide-small" style="width:40%">
+    <div class="bgimg"></div>
+</nav>
+
+<div class="w3-main w3-padding-large" style="margin-left:40%">    
+    <img src="images/photo1.jpg" class="w3-hide-large w3-hide-small w3-round" style="display:block;width:60%;margin:auto;">
+    <img src="images/photo1.jpg" class="w3-hide-large w3-hide-medium w3-round" width="1000" height="1333">
+
+    <div class="container">
+        <h1 class="text-center skin-serenity">Skin Serenity</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <p class="text-center mt-3">Don't have an account? <a href="signup.html">Click here</a>.</p>
+    </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+ 
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-analytics.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB7MU7VC-oudrL07lnkMgZNvPc_J9zvHKo",
+    authDomain: "skinserenitydb-9729b.firebaseapp.com",
+    projectId: "skinserenitydb-9729b",
+    storageBucket: "skinserenitydb-9729b.appspot.com",
+    messagingSenderId: "527946304001",
+    appId: "1:527946304001:web:d5d29e7fbe56d5e2acce00",
+    measurementId: "G-61MKWW74GT"
+}
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth();
+
+
+  document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        window.location.href = "home.html";
+      })
+      .catch((error) => {
+        alert("Invalid Credential");
+      });
+  });
+</script>
+
+</body>
+</html>

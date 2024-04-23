@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skin Serenity</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="skintype.html" class="w3-bar-item w3-button">Skin Type</a>
+      <a href="customize.html" class="w3-bar-item w3-button">Customize</a>
+      <a href="#" id="logout" class="w3-bar-item w3-button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i></a>
+    </div>
+  </div>
+</div>
+
+<header class="w3-display-container w3-center" >
+    <video width="1150" autoplay loop muted>
+      <source src="images/homebg.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+  </div>
+</header><br><hr>
+
+<div class="w3-content w3-center" style="max-width:1000px">
+  <div class="w3-row w3-padding-small" id="about">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+     </div>
+
+    <div class="w3-center m6">
+      <h1 class="w3-text-white w3-hide-small">...<b><i></b></i></h1>
+      <h1 class="w3-xxxlarge"><b><i>Skin Serenity</b></i></h1><br>
+      <h5 class="w3-center w3-xlarge"><i>Take care of your skin</i></h5><br>
+      <p class="w3-xlarge">Skin Serenity offers a treasure trove of skincare wisdom, guiding users with practical suggestions for glowing, healthy skin. From basic routines to advanced treatments, it simplifies skincare with concise tips tailored to individual needs. Whether combating acne or seeking anti-aging solutions, Skin Serenity empowers users with effective strategies for their skincare journey. With its user-friendly approach and concise advice, it's a go-to resource for anyone striving for radiant skin. <b><br><i>We'll take care of everything, and you'll leave feeling refreshed, rejuvenated, and beautiful.</i></b>
+    </div>
+  </div>
+  <br><br><br><hr><br><br>
+
+<footer class="col-lg-12 w3-light-grey w3-padding-32" id="contact">
+  <h1 class="text-center">Contact</h1>
+  <p class="text-center">For the love of beauty — let's get in touch. Send us a message:  <i class="fa fa-envelope-open fa-fw w3-text-black w3-large"></i> skinserenity@gmail.com</p>
+</footer>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function confirmLogout() {
+    if (confirm("Are you sure you want to logout?")) {
+      window.location.href = "index.html";
+    }
+  }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Normal Skin Care</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Playfair Display";
+      letter-spacing: 5px;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .skincare-routine {
+      width: 50%;
+      float: left;
+    }
+    .images {
+      width: 47%;
+      float: right;
+      text-align: center;
+      position: relative; 
+    }
+    .image {
+      display: none; 
+      max-width: 80%;
+      margin-left: 15%;
+    }
+    .button-container {
+      text-align: center;
+      clear: both;
+      margin-top: 20px;
+    }
+    .navigation-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #f76db5;
+      cursor: pointer;
+    }
+    .prev-button {
+      left: 15%; 
+    }
+    .next-button {
+      right: 5%; 
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <div class="w3-right w3-hide-small">
+      <a href="skintype.html" class="w3-bar-item w3-button">Go back</a>
+    </div>
+  </div>
+</div><br>
+
+<div class="container">
+  <h1 class="text-center"><b>Normal Skin Skincare Routine</h1></b><br>
+  <div class="skincare-routine"><br>
+    <h3>Day:</h3>
+    <p>
+      1. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.
+      <br>
+      2. Apply a toner to remove any leftover impurities and prep your skin for the next steps.
+      <br>
+      3. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.
+      <br>
+      4. Apply a moisturizer to hydrate your skin and protect it from the elements.
+      <br>
+      5. Apply sunscreen with SPF 30 or higher to protect your skin from sun damage.
+    </p><br>
+    <h3>Night:</h3>
+    <p>
+      1. Use a makeup remover to remove all traces of makeup.
+      <br>
+      2. Wash your face with a gentle cleanser to remove dirt, oil, and sweat.
+      <br>
+      3. Apply a toner to remove any leftover impurities and prep your skin for the next steps.
+      <br>
+      4. Apply a serum to target specific concerns, such as wrinkles or uneven skin tone.
+      <br>
+      5. Apply a night cream to hydrate your skin and help it repair itself while you sleep.
+    </p>
+  </div>
+
+  <div class="images">
+    <img class="image" src="images/n1.jpg" style="display: block;"> 
+    <img class="image" src="images/n2.jpg">
+    <img class="image" src="images/n3.jpg">
+    <img class="image" src="images/n4.png">
+    <button class="navigation-button prev-button" onclick="showPrevImage()"><i class="fa fa-chevron-left"></i></button> 
+    <button class="navigation-button next-button" onclick="showNextImage()"><i class="fa fa-chevron-right"></i></button> 
+  </div>
+</div>
+
+<script>
+  let currentImageIndex = 0;
+  const images = document.querySelectorAll('.image');
+
+  function showNextImage() {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  }
+
+  function showPrevImage() {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

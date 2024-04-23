@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Normal Skin Care</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    body {font-family: "Times New Roman", Georgia, Serif;}
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Playfair Display";
+      letter-spacing: 5px;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .skincare-routine {
+      width: 50%;
+      float: left;
+    }
+    .images {
+      width: 47%;
+      float: right;
+      text-align: center;
+      position: relative; 
+    }
+    .image {
+      display: none; 
+      max-width: 80%;
+      margin-left: 15%;
+    }
+    .button-container {
+      text-align: center;
+      clear: both;
+      margin-top: 20px;
+    }
+    .navigation-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #f76db5;
+      cursor: pointer;
+    }
+    .prev-button {
+      left: 15%; 
+    }
+    .next-button {
+      right: 5%; 
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <div class="w3-right w3-hide-small">
+      <a href="skintype.html" class="w3-bar-item w3-button">Go back</a>
+    </div>
+  </div>
+</div><br>
+
+<div class="container">
+  <h1 class="text-center"><b>Dry Skin Skincare Routine</h1></b><br>
+  <div class="skincare-routine"><br>
+    <h3>Day:</h3>
+    <p>
+      1. Gently rinse your face with warm water.
+      <br>
+      2. Use a mild cleanser to cleanse your skin.
+      <br>
+      3. Apply moisturizer to hydrate your skin.
+      <br>
+      4. Don't forget to put on sunscreen to protect your skin.
+      <br>
+      5. If your skin feels extra dry, consider adding a few drops of face oil for added nourishment.
+    </p><br>
+    <h3>Night:</h3>
+    <p>
+      1. Cleanse your face with a gentle cleanser to remove the day's impurities.
+      <br>
+      2. Apply a serum to address specific skin concerns you might have.
+      <br>
+      3. Dab on some eye cream to keep the delicate skin around your eyes hydrated.
+      <br>
+      4. Moisturize your skin generously to lock in hydration overnight.
+      <br>
+      5. Finish off by applying face oil to seal in moisture and wake up with a radiant glow.
+    </p>
+  </div>
+
+  <div class="images">
+    <img class="image" src="images/d1.jpg" style="display: block;"> 
+    <img class="image" src="images/d2.webp">
+    <img class="image" src="images/d3.jpg">
+    <img class="image" src="images/d4.png">
+    <button class="navigation-button prev-button" onclick="showPrevImage()"><i class="fa fa-chevron-left"></i></button> 
+    <button class="navigation-button next-button" onclick="showNextImage()"><i class="fa fa-chevron-right"></i></button> 
+  </div>
+</div>
+
+<script>
+  let currentImageIndex = 0;
+  const images = document.querySelectorAll('.image');
+
+  function showNextImage() {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  }
+
+  function showPrevImage() {
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    images[currentImageIndex].style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

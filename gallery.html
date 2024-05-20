@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .swiper-container {
+            width: 70%;
+            height: 70%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .swiper-slide img {
+            max-width: 100%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+
+        .label {
+            background: white;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            position: relative;
+            bottom: -38px; 
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* Fixed number of columns */
+            gap: 10px; /* Fixed spacing between items */
+            padding: 20px;
+        }
+
+        .gallery-item {
+            width: 100%; /* Use the full width of the grid cell */
+            aspect-ratio: 1 / 1; /* Maintain a square aspect ratio */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            display: block;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 100px 0 20px 0;
+            color: #333;
+        }
+
+        .gallery-beforeandafter {
+            text-align: center;
+        }
+
+        .blur-background {
+            filter: blur(5px);
+        }
+
+        .blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-top">
+        <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+          <div class="w3-right w3-hide-small">
+            <a href="home.html" class="w3-bar-item w3-button">About</a>
+            <a href="skintype.html" class="w3-bar-item w3-button">Skin Type</a>
+            <a href="customize.html" class="w3-bar-item w3-button">Customize</a>
+            <a href="gallery.html" class="w3-bar-item w3-button">Gallery</a>
+            <a href="#" id="logout" class="w3-bar-item w3-button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i></a>
+          </div>
+        </div>
+    </div>
+
+    <div class="gallery-title"><h1>Gallery</h1></div>
+    <div class="gallery-container">
+        <!-- Gallery items will be populated dynamically -->
+    </div>
+
+    <div class="blur-overlay"></div>
+    <div class="swiper-container">
+        <h1 class="gallery-beforeandafter">Before & After</h1>
+        <button class="close-button">&times;</button>
+        <div class="swiper-wrapper">
+            <!-- Slides will be added dynamically -->
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyB7MU7VC-oudrL07lnkMgZNvPc_J9zvHKo",
+            authDomain: "skinserenitydb-9729b.firebaseapp.com",
+            projectId: "skinserenitydb-9729b",
+            storageBucket: "skinserenitydb-9729b.appspot.com",
+            messagingSenderId: "527946304001",
+            appId: "1:527946304001:web:d5d29e7fbe56d5e2acce00",
+            measurementId: "G-61MKWW74GT"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+
+        document.addEventListener('DOMContentLoaded', function() {
+    // Fetch images from Firestore
+    db.collection('images').get().then(querySnapshot => {
+        const galleryContainer = document.querySelector('.gallery-container');
+        querySnapshot.forEach(doc => {
+            const image = doc.data();
+            const galleryItem = document.createElement('div');
+            galleryItem.classList.add('gallery-item');
+            const img = document.createElement('img');
+            img.src = image.afterURL; 
+            galleryItem.appendChild(img);
+            galleryContainer.appendChild(galleryItem);
+
+            galleryItem.addEventListener('click', () => {
+                const swiperContainer = document.querySelector('.swiper-container');
+                const swiperWrapper = swiperContainer.querySelector('.swiper-wrapper');
+                const blurOverlay = document.querySelector('.blur-overlay');
+
+                swiperWrapper.innerHTML = ''; 
+
+                const beforeSlide = document.createElement('div');
+                beforeSlide.classList.add('swiper-slide');
+                const beforeImage = document.createElement('img');
+                beforeImage.src = image.beforeURL;
+                beforeSlide.appendChild(beforeImage);
+                swiperWrapper.appendChild(beforeSlide);
+
+                const afterSlide = document.createElement('div');
+                afterSlide.classList.add('swiper-slide');
+                const afterImage = document.createElement('img');
+                afterImage.src = image.afterURL;
+                afterSlide.appendChild(afterImage);
+                swiperWrapper.appendChild(afterSlide);
+
+                blurOverlay.style.display = 'block'; 
+                swiperContainer.style.display = 'block';
+
+                const swiper = new Swiper('.swiper-container', {
+                    direction: 'horizontal',
+                    loop: true,
+                    spaceBetween: 10,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+
+                // Event listener to close swiper when clicking outside
+                blurOverlay.addEventListener('click', () => {
+                    swiperContainer.style.display = 'none'; // Hide the swiper container
+                    blurOverlay.style.display = 'none'; // Hide the blur overlay
+                });
+
+                // Close button event listener
+                document.querySelector('.close-button').addEventListener('click', () => {
+                    swiperContainer.style.display = 'none';
+                    blurOverlay.style.display = 'none';
+                });
+            });
+        });
+    }).catch(error => {
+        console.error('Error fetching images:', error);
+    });
+});
+
+    </script>
+</body>
+</html>

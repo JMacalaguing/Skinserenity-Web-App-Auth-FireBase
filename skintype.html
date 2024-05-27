@@ -13,61 +13,70 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display";
   letter-spacing: 5px;
 }
+.edit-icon {
+  cursor: pointer;
+}
 </style>
 
 </head>
 <body>
 
-  <div class="w3-top">
-    <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
-      <div class="w3-right w3-hide-small">
-        <a href="#about" class="w3-bar-item w3-button">About</a>
-        <a href="skintype.html" class="w3-bar-item w3-button">Skin Type</a>
-        <a href="customize.html" class="w3-bar-item w3-button">Customize</a>
-        <a href="gallery.html" class="w3-bar-item w3-button">Gallery</a>
-        <a href="#" id="logout" class="w3-bar-item w3-button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i></a>
-      </div>
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button">About</a>
+      <a href="skintype.html" class="w3-bar-item w3-button">Skin Type</a>
+      <a href="customize.html" class="w3-bar-item w3-button">Customize</a>
+      <a href="gallery.html" class="w3-bar-item w3-button">Gallery</a>
+      <a href="#" id="logout" class="w3-bar-item w3-button" onclick="confirmLogout()"><i class="fa fa-sign-out"></i></a>
     </div>
   </div>
+</div>
 
-<header class="w3-display-container w3-center" >
-    <video width="1150" autoplay loop muted>
-      <source src="images/homebg.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+<header class="w3-display-container w3-center">
+  <video width="1150" autoplay loop muted>
+    <source src="images/homebg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
   </div>
 </header><br><hr>
 
 <div class="w3-content w3-center" style="max-width:1000px">
   <div class="w3-row w3-padding-small" id="about">
     <div class="w3-col m6 w3-padding-large w3-hide-small">
-     </div>
+    </div>
 
-  <div class="col-lg-12 w3-padding-large" id="skincare">
-    <h1 class="w3-text-white w3-hide-small">...<b><i></b></i></h1>
-    <h1 class="text-center"><b>Know Your Skin Type</h1></b><br>
-    <div class="list-group">
-      <a href="normal.html" class="list-group-item list-group-item-action">
-        <h4 class="list-group-item-heading">Normal Skin</h4>
-        <p class="list-group-item-text">Normal skin is defined as well-balanced skin which contains the optimal amount of sebum and moisture. This skin type tends to have fine pores, an even tone and is neither too oily or too dry. Both sensitivity and outbreaks are rare in normal skin but this can be triggered by internal and external stressors.</p>
-      </a>
-      <a href="dry.html" class="list-group-item list-group-item-action">
-        <h4 class="list-group-item-heading">Dry Skin</h4>
-        <p class="list-group-item-text">Dry skin is characterised by reduced production of sebum. This skin type tends to appear dull, may feel rough, is less elastic and increases the visibility of lines or wrinkles. It also has a tendency to be more sensitive. However on a positive note, produces almost invisible pores. A good dry skin routine is necessary to boost the health and appearance of dry skin.</p>
-      </a>
-      <a href="oily.html" class="list-group-item list-group-item-action">
-        <h4 class="list-group-item-heading">Oily Skin</h4>
-        <p class="list-group-item-text">Oily skin is characterised by excessive production of sebum. This type of skin tends to be thicker, more prone to breakouts and the pores are usually larger. On the plus side, oily skin tends to show the signs of ageing less readily. An oily skin routine should control oil production, reduce breakouts and minimise pores.</p>
-      </a>
-      <a href="sensitive.html" class="list-group-item list-group-item-action">
-        <h4 class="list-group-item-heading">Sensitive Skin</h4>
-        <p class="list-group-item-text">Sensitive skin is prone to reactions like redness, itching, or burning when exposed to certain products or environmental factors. It requires gentle, fragrance-free skincare products and minimal ingredients to prevent irritation and maintain its delicate balance.</p>
-      </a>
-      <a href="combination.html" class="list-group-item list-group-item-action">
-        <h4 class="list-group-item-heading">Combination</h4>
-        <p class="list-group-item-text">Combination skin can sometimes feel like having two completely skin types on your face. The central portion of the face usually behaves like oily skin whilst the edges may be more like normal or dry skin. The best combination skincare routine should respect this fact and ensure that the entire face is well-balanced, soft and blemish free.</p>
-      </a>
+    <div class="col-lg-12 w3-padding-large" id="skincare">
+      <h1 class="w3-text-white w3-hide-small">...<b><i></b></i></h1>
+      <h1 class="text-center"><b>Know Your Skin Type</h1></b><br>
+      <div class="list-group">
+        <a href="normal.html" class="list-group-item list-group-item-action">
+          <h4 class="list-group-item-heading">Normal Skin</h4>
+          <p class="list-group-item-text">Normal skin is defined as well-balanced skin which contains the optimal amount of sebum and moisture. This skin type tends to have fine pores, an even tone and is neither too oily or too dry. Both sensitivity and outbreaks are rare in normal skin but this can be triggered by internal and external stressors.</p>
+          <span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span>
+        </a>
+        <a href="dry.html" class="list-group-item list-group-item-action">
+          <h4 class="list-group-item-heading">Dry Skin</h4>
+          <p class="list-group-item-text">Dry skin is characterised by reduced production of sebum. This skin type tends to appear dull, may feel rough, is less elastic and increases the visibility of lines or wrinkles. It also has a tendency to be more sensitive. However on a positive note, produces almost invisible pores. A good dry skin routine is necessary to boost the health and appearance of dry skin.</p>
+          <span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span>
+        </a>
+        <a href="oily.html" class="list-group-item list-group-item-action">
+          <h4 class="list-group-item-heading">Oily Skin</h4>
+          <p class="list-group-item-text">Oily skin is characterised by excessive production of sebum. This type of skin tends to be thicker, more prone to breakouts and the pores are usually larger. On the plus side, oily skin tends to show the signs of ageing less readily. An oily skin routine should control oil production, reduce breakouts and minimise pores.</p>
+          <span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span>
+        </a>
+        <a href="sensitive.html" class="list-group-item list-group-item-action">
+          <h4 class="list-group-item-heading">Sensitive Skin</h4>
+          <p class="list-group-item-text">Sensitive skin is prone to reactions like redness, itching, or burning when exposed to certain products or environmental factors. It requires gentle, fragrance-free skincare products and minimal ingredients to prevent irritation and maintain its delicate balance.</p>
+          <span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span>
+        </a>
+        <a href="combination.html" class="list-group-item list-group-item-action">
+          <h4 class="list-group-item-heading">Combination</h4>
+          <p class="list-group-item-text">Combination skin can sometimes feel like having two completely skin types on your face. The central portion of the face usually behaves like oily skin whilst the edges may be more like normal or dry skin. The best combination skincare routine should respect this fact and ensure that the entire face is well-balanced, soft and blemish free.</p>
+          <span class="edit-icon" onclick="editItem(event, this)"><i class="fa fa-edit"></i></span>
+        </a>
+      </div>
     </div>
   </div>
 </div>
@@ -77,18 +86,56 @@ h1, h2, h3, h4, h5, h6 {
   <h1 class="text-center">Contact</h1>
   <p class="text-center">For the love of beauty — let's get in touch. Send us a message:  <i class="fa fa-envelope-open fa-fw w3-text-black w3-large"></i> skinserenity@gmail.com</p>
 </footer>
-  
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea id="editTextArea" class="form-control" rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
+  let currentEditElement = null;
+
   function confirmLogout() {
     if (confirm("Are you sure you want to logout?")) {
       window.location.href = "index.html";
     }
   }
-  </script>
+
+  function editItem(event, element) {
+    event.preventDefault(); 
+    event.stopPropagation(); 
+    const textElement = element.previousElementSibling;
+    currentEditElement = textElement;
+    document.getElementById('editTextArea').value = textElement.textContent;
+    $('#editModal').modal('show');
+  }
+
+  function saveChanges() {
+    const newText = document.getElementById('editTextArea').value;
+    currentEditElement.textContent = newText;
+    $('#editModal').modal('hide');
+  }
+</script>
 
 </body>
 </html>
